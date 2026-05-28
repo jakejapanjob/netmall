@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8071
 spring:
   application:
     name: cart-service
@@ -10,6 +10,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: ${hm.db.pw}
+  cloud:
+    nacos:
+      server-addr: 192.168.174.128:8848
 mybatis-plus:
   configuration:
     default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
@@ -36,6 +39,6 @@ openapi:
   contact:
     name: J.K.
     email: jiangkai1110@gmail.com
-    url: https://github.com/jakejapanjob/shopping
+    url: https://github.com/jakejapanjob/netmall
 
 # keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123

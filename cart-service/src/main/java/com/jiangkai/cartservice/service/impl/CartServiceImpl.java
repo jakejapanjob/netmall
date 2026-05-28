@@ -1,6 +1,7 @@
 package com.jiangkai.cartservice.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,6 +16,8 @@ import com.jiangkai.cartservice.domain.vo.CartVO;
 import com.jiangkai.cartservice.mapper.CartMapper;
 import com.jiangkai.cartservice.service.ICartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +47,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
     //TODO
     // private final IItemService itemService;
     private final RestTemplate restTemplate;
+    private final DiscoveryClient discoveryClient;
 
     @Override
     public void addItem2Cart(CartFormDTO cartFormDTO) {
@@ -91,10 +95,15 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
         Set<Long> itemIds = vos.stream().map(CartVO::getItemId).collect(Collectors.toSet());
         // 2.查询商品
         //List<ItemDTO> items = itemService.queryItemByIds(itemIds);
-
+        //2.1 根据服务名称获取服务的示例列表
+        List<ServiceInstance> instances = discoveryClient.getInstances("item-service");
+        if (CollUtils.isEmpty(instances)){
+            return ;
+        }
+        ServiceInstance instance = instances.get(RandomUtil.randomInt(instances.size()));
         //RestTemplate 方法
         ResponseEntity<List<ItemDTO>> response = restTemplate.exchange(
-                "http://localhost:8091/items?ids={ids}",
+                instance.getUri()+"/items?ids={ids}",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<ItemDTO>>() {},
