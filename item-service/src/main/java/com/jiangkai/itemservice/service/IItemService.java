@@ -1,8 +1,8 @@
 package com.jiangkai.itemservice.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jiangkai.itemservice.domain.dto.ItemDTO;
-import com.jiangkai.itemservice.domain.dto.OrderDetailDTO;
+import com.jiangkai.hmapi.dto.ItemDTO;
+import com.jiangkai.hmapi.dto.OrderDetailDTO;
 import com.jiangkai.itemservice.domain.po.Item;
 
 import java.util.Collection;
