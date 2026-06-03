@@ -40,5 +40,7 @@ openapi:
     name: J.K.
     email: jiangkai1110@gmail.com
     url: https://github.com/jakejapanjob/netmall
-
+feign:
+  okhttp:
+    enabled: true
 # keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123

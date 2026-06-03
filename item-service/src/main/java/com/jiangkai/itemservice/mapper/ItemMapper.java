@@ -1,7 +1,7 @@
 package com.jiangkai.itemservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.jiangkai.itemservice.domain.dto.OrderDetailDTO;
+import com.jiangkai.hmapi.dto.OrderDetailDTO;
 import com.jiangkai.itemservice.domain.po.Item;
 import org.apache.ibatis.annotations.Update;
 

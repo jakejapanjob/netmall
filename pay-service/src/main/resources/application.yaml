@@ -1,0 +1,45 @@
+server:
+  port: 8041
+spring:
+  application:
+    name: pay-service
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://${hm.db.host}:3306/hm-pay?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Tokyo
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ${hm.db.pw}
+  cloud:
+    nacos:
+      server-addr: 192.168.174.128:8848
+mybatis-plus:
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+  global-config:
+    db-config:
+      update-strategy: not_null
+      id-type: auto
+logging:
+  level:
+    com.hmall: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+  file:
+    path: "logs/${spring.application.name}"
+knife4j:
+  enable: true
+  springdoc:
+    packages-to-scan: com.jiangkai
+openapi:
+  title: User Management Interface Doc
+  description: User Management Interface Doc
+  version: v1.0.0
+
+  contact:
+    name: J.K.
+    email: jiangkai1110@gmail.com
+    url: https://github.com/jakejapanjob/netmall
+
+
+# keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123

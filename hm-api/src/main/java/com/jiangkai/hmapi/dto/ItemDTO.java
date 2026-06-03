@@ -1,4 +1,4 @@
-package com.jiangkai.cartservice.domain.dto;
+package com.jiangkai.hmapi.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
