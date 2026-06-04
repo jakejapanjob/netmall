@@ -7,7 +7,7 @@ spring:
     nacos:
       server-addr: 192.168.174.128:8848
     gateway:
-      routes:
+      routes :
         - id: item-service
           uri: lb://item-service
           predicates:
@@ -28,3 +28,17 @@ spring:
           uri: lb://trade-service
           predicates:
             - Path=/orders/**
+      default-filters:
+        - PrintAny=a,b,c
+hm:
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+  auth:
+    excludePaths:
+      - /search/**
+      - /users/login
+      - /items/**
+      - /hi
