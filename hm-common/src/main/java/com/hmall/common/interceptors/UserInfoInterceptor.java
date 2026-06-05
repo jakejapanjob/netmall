@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class UserInfoInterceptor implements HandlerInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request,  HttpServletResponse response, Object handler) throws Exception {
         String userInfo = request.getHeader("user-info");
         if(StrUtil.isNotBlank(userInfo)){
             UserContext.setUser(Long.valueOf(userInfo));
