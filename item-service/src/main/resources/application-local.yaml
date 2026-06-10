@@ -1,4 +1,10 @@
 hm:
   db:
+    database: hm-item
+    port: 3306
     host: 192.168.174.128 # 修改为你自己的虚拟机IP地址
+    un: root
     pw: root # 修改为docker中的MySQL密码
+  swagger:
+    title: item-service
+    packages-to-scan: com.jiangkai.itemservice.controller
